@@ -1,0 +1,76 @@
+﻿@model FornecedorDto
+@{
+}
+
+<h4>Atualizar Fornecedor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" enctype="multipart/form-data" id="MyForm">
+            <div class="form-group">
+                <label hidden class="control-label">Id</label>
+                <input class="form-control" hidden value="@ViewData["FornecedorId"]" readonly />
+                
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" asp-for="Nome"></label>
+                <input class="form-control" asp-for="Nome" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" asp-for="Cnpj"></label>
+                <input class="form-control" asp-for="Cnpj" />
+                <span asp-validation-for="Cnpj" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" asp-for="Segmento"></label>
+                <select class="form-control" asp-for="Segmento">
+                    <option value="">Selecione um segmento</option>
+                    <option value="Comércio">Comércio</option>
+                    <option value="Serviço">Serviço</option>
+                    <option value="Indústria">Indústria</option>
+                </select>
+                <span asp-validation-for="Segmento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" asp-for="Cep"></label>
+                <input class="form-control" asp-for="Cep" id="Cep" onchange="consultarCEP()" />
+                <span asp-validation-for="Cep" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" asp-for="Endereco"></label>
+                <input class="form-control" asp-for="Endereco" id="Endereco" />
+                <span asp-validation-for="Endereco" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Criado em:</label>
+                <input class="form-control" value="@ViewData["CreatedAt"]" readonly />
+            </div>
+
+            <div class="mb-3">
+                <input class="btn-check" asp-for="Imagem" id="idImagem" onchange="previewImagem(event)">
+                <label class="btn btn btn-outline-primary" style="color: black;" for="idImagem">Atualizar Imagem</label>
+                <span asp-validation-for="Imagem" class="text-danger"></span>
+            </div>
+
+            <div class="text-center mt-3">
+                <input type="submit" class="btn btn-outline-primary" value="Atualizar" form="MyForm" />  |
+                <a class="btn btn-outline-secondary" asp-controller="Fornecedores" asp-action="Index" role="button">Voltar à Lista</a>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col-md-4 text-center">
+        <div class="mb-3">
+            <img id="outputImagem" src="@ViewData["ImagemCaminho"]" class="img img-responsive" width="250">
+        </div>
+    </div>
+
+</div>
